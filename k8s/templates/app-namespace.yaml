@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: spaship-app-service
+  labels:
+    name: spaship-app-service-ns
