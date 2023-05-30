@@ -1,0 +1,40 @@
+appserver:
+  name: appserver
+  replicas: 3
+
+  image:
+    name: appserver
+    tag: v2
+    port: 3000
+  
+  service:
+    name: appserver-clusterip-service
+    type: ClusterIP
+
+
+userservice:
+  name: userservice
+  replicas: 2
+
+  image:
+    name: userservice
+    tag: v2
+    port: 4000
+  
+  service:
+    name: user-service-clusterip-service
+    type: ClusterIP
+
+nginx:
+  name: app-nginx
+  replicas: 1
+
+  image:
+    name: app-nginx
+    tag: v2
+    port: 80
+
+  service:
+    name: nginx-loadbalancer-service
+    type: LoadBalancer
+

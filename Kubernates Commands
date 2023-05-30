@@ -1,0 +1,33 @@
+docker build . -f nginx/Dockerfile -t app-nginx:v1       
+docker build . -f app/Dockerfile -t appserver:v1     
+docker build . -f userservice/Dockerfile -t userservice:v1      
+
+
+kubectl apply -f app/deployment.yaml                        
+eval $(minikube docker-env)       
+
+
+kubectl apply -f app/service.yaml
+
+kubectl get service 
+
+kubectl apply -f userservice/deployment.yaml   
+kubectl apply -f userservice/service.yaml
+
+
+
+kubectl apply -f nginx/deployment.yaml   
+kubectl apply -f nginx/service.yaml
+
+ minikube service nginx-loadbalancer-service  (Final call route)
+
+docker build . -f app/Dockerfile -t appserver:v2
+docker build . -f nginx/Dockerfile -t app-nginx:v2
+
+
+kubectl create -f app/namepsace.yaml
+
+
+helm install ./k8s --generate-name       
+
+% helm upgrade k8s-1685285236 ./k8s      
